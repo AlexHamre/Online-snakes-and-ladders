@@ -1,0 +1,464 @@
+<!DOCTYPE html> <!-- html v5 -->
+<html lang="en"> <!-- språk -->
+<!-- Head har metadataen -->
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--stock images-->
+    <link rel="icon" type="image/png" href="icon.png"> <!--Dette er iconet-->
+
+    <!--dette linker opp css filene-->
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="Topnav.css">
+
+    <title>AlexHamre</title> <!--Dette er tittelen-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--fonten til spillet-->
+    <style>
+      @font-face {
+          font-family: blackadder;
+          src: url('./assets/itcblkad.ttf');
+          font-weight: 400;
+          font-weight: normal;
+      }  </style>
+
+<script>
+/* gjemmer topnaven på små skjermer */
+  function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }</script>
+    </head>
+<!--Body-->
+<body>
+<!--Dette er i topnav baren-->
+<div class="topnav" id="myTopnav">
+  <a class="flush" href="index.html"><img src="Logo_oppgave.png" width="auto" height="25px"></a>
+  <a href="About.html">About</a>
+  <a href="contact.html">Contact</a> 
+  <a href="Product gallery.html">products</a>
+  <a href="Projects.html">Projects</a>
+  <!--menu button in collapsed mode-->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i></a>
+  </div>
+      <!--Dette er under topnav baren-->
+      
+        <!--Loading images-->
+      <img id="board" src="assets/Artboard 1.png" alt="404 error" width="0" height="0">
+      <img id="dark" src="assets/win screen.png" alt="404 error" width="0" height="0">
+      <img id="player1" src="assets/player1_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player2" src="assets/player2_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player3" src="assets/player3_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player4" src="assets/player4_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player5" src="assets/player5.png" alt="404 error" width="0" height="0">
+      <img id="player6" src="assets/player6.png" alt="404 error" width="0" height="0">
+      <img id="player7" src="assets/player7.png" alt="404 error" width="0" height="0">
+      <img id="player8" src="assets/player8.png" alt="404 error" width="0" height="0">
+      <img id="dieface1" src="assets/new diefaces/die1.png" alt="404 error" width="0" height="0">
+      <img id="dieface2" src="assets/new diefaces/die2.png" alt="404 error" width="0" height="0">
+      <img id="dieface3" src="assets/new diefaces/die3.png" alt="404 error" width="0" height="0">
+      <img id="dieface4" src="assets/new diefaces/die4.png" alt="404 error" width="0" height="0">
+      <img id="dieface5" src="assets/new diefaces/die5.png" alt="404 error" width="0" height="0">
+      <img id="dieface6" src="assets/new diefaces/die6.png" alt="404 error" width="0" height="0">
+      <img id="fullscreenON" src="assets/player count buttons/fullscreen on button.png" alt="404 error" width="0" height="0">
+      <img id="fullscreenOFF" src="assets/player count buttons/fullscreen off button.png" alt="404 error" width="0" height="0">
+      <img id="resetbutton" src="assets/player count buttons/refresh button.png" alt="404 error" width="0" height="0">
+      <img id="onlinebutton" src="assets/player count buttons/online button.png" alt="404 error" width="0" height="0">
+      <img id="offlinebutton" src="assets/player count buttons/offline button.png" alt="404 error" width="0" height="0">
+      <img id="leftbutton" src="assets/player count buttons/left button.png" alt="404 error" width="0" height="0">
+      <img id="confirmbutton" src="assets/player count buttons/confirm button.png" alt="404 error" width="0" height="0">
+      <img id="rightbutton" src="assets/player count buttons/right button.png" alt="404 error" width="0" height="0">
+
+
+
+
+      <canvas id="myCanvas" width="1920" height="1080" style="width: 75%;">
+    </canvas>
+    <script>
+
+        // precomputed array of all 100 locations
+        xarray = [3000, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54]
+    yarray = [3000, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 918, 918, 918, 918, 918, 918, 918, 918, 918, 918, 810, 810, 810, 810, 810, 810, 810, 810, 810, 810, 702, 702, 702, 702, 702, 702, 702, 702, 702, 702, 594, 594, 594, 594, 594, 594, 594, 594, 594, 594, 486, 486, 486, 486, 486, 486, 486, 486, 486, 486, 378, 378, 378, 378, 378, 378, 378, 378, 378, 378, 270, 270, 270, 270, 270, 270, 270, 270, 270, 270, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, -54]
+    // outputs number between 1 and 6 and adds it to the player whose turn it is
+    function diceroll(){
+      rand = Math.floor(Math.random() * 6) + 1; 
+      dieface = "dieface" + rand; 
+      console.log("dieface"+rand); 
+      if (current_position[current_player]==rendered_position[current_player]){
+        current_position[current_player] += parseInt(rand)
+        current_player +=1
+        if (current_player == player_amount + bot_amount){
+            current_player = 0};
+    };
+  }
+    // all player objects are stored at an index in this list
+    player = []
+    // current position of the players
+    current_position = [1, 1, 1, 1, 1, 1, 1, 1]
+    // rendered position of the players
+    rendered_position = [1, 1, 1, 1, 1, 1, 1, 1]
+    // if player should be flipped
+    flipped = [false, false, false, false, false, false, false, false]
+    // variables used in movement
+    targetx = [0,0,0,0,0,0,0,0]
+    targety = [0,0,0,0,0,0,0,0]
+    distancex = [0,0,0,0,0,0,0,0]
+    distancey = [0,0,0,0,0,0,0,0]
+    distratio = [0,0,0,0,0,0,0,0]
+    // some more variable inits
+    current_check = 0
+    current_player = 0
+    player_amount = 1
+    bot_amount = 1
+    gamerunning = false
+    dieface = "dieface6"
+    fullscreenbutton = "fullscreenON"
+    isfullscreen = false
+    won = false
+    started = false
+    menu = false
+    player_amountselected = false
+    bot_amountselected = false
+
+
+
+    //click detection stuff
+    function getMousePosition(canvas, event) {
+            let rect = canvas.getBoundingClientRect();
+            let x = event.clientX - rect.left;
+            let y = event.clientY - rect.top;
+            // makes x and y 1920 1080 instead of actual size
+            x = x/rect.width *1920
+            y = y/rect.height * 1080
+            console.log(x, y)
+            // dice button
+            if (x<1250 && x>1100 && y<170 && y>20 && !won && started && !menu){diceroll()}
+            // fullscreen button
+            else if (x<1911 && x>1580 && y<150 && y>25){fullscreenswap(); console.log("fullscreen")}
+            // restart button
+            else if (x>resetbutton.x && x<resetbutton.x+resetbutton.width && y<resetbutton.y + resetbutton.height && y>resetbutton.y && !menu){restart()}
+            // online button
+            else if (onlinebtn.x && x<onlinebtn.x+onlinebtn.width && y<onlinebtn.y + onlinebtn.height && y>onlinebtn.y && !started){
+              window.location.href = "./online_snakes.html";
+            }
+            // offline button
+            else if (x>offlinebtn.x && x<offlinebtn.x+offlinebtn.width && y<offlinebtn.y + offlinebtn.height && y>offlinebtn.y && !started){started = true; menu = true}
+            // left button
+            else if (x>leftbtn.x && x<leftbtn.x+leftbtn.width && y<leftbtn.y + leftbtn.height && y>leftbtn.y && menu){
+              console.log("left")
+              if (!player_amountselected){
+                if (player_amount > 1){
+                  player_amount--
+                }
+              }
+              else if (!bot_amountselected){
+                if (bot_amount > 0){
+                  bot_amount--
+                }
+              }
+            }
+            // confirm button
+            else if (x>confirmbtn.x && x<confirmbtn.x+confirmbtn.width && y<confirmbtn.y + confirmbtn.height && y>confirmbtn.y && menu){
+              console.log("confirmed")
+              if (!player_amountselected){
+                player_amountselected = true
+              }
+              else if (!bot_amountselected){
+                bot_amountselected = true
+                gamerunning = true
+              }
+            }
+            // right button
+            else if (x>rightbtn.x && x<rightbtn.x+rightbtn.width && y<rightbtn.y + rightbtn.height && y>rightbtn.y && menu){
+              console.log("right")
+              if (!player_amountselected){
+                if (player_amount < 8){
+                  player_amount++
+                }
+              }
+              else if (!bot_amountselected){
+                if (player_amount + bot_amount < 8){
+                  bot_amount++
+                }
+              }
+            }
+
+
+        }
+      
+        let canvasElem = document.querySelector("canvas");
+
+        canvasElem.addEventListener("mousedown", function(e) {getMousePosition(canvasElem, e);});
+
+  // fullscreen
+  function openFullscreen() {
+    if (myCanvas.requestFullscreen) {
+      myCanvas.requestFullscreen();
+    } else if (myCanvas.webkitRequestFullscreen) { /* Safari */
+      myCanvas.webkitRequestFullscreen();
+    } else if (myCanvas.msRequestFullscreen) { /* IE11 */
+      myCanvas.msRequestFullscreen();
+    }
+  }
+    // close fullscreen
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+    console.log("closed fullscreen");
+  }
+
+    function fullscreenswap(){
+      if (isfullscreen){fullscreenbutton = "fullscreenON"; closeFullscreen(); isfullscreen = false}
+      else {fullscreenbutton = "fullscreenOFF"; openFullscreen(); isfullscreen = true}
+      screenrefresh()
+    }
+
+    function spriteInit(){
+      board = new sprite(document.getElementById("board"),0 ,0, 1920, 1080, false);
+        for( let i = 1; i < 5; i++){
+          player[i] = new sprite(document.getElementById("player"+ i),xarray[rendered_position[i-1]]-40 ,yarray[rendered_position[i-1]]-30 ,98, 42, flipped[i-1]);
+        }
+      for( let i = 5; i < 9; i++){
+          player[i] = new sprite(document.getElementById("player"+ i),xarray[rendered_position[i-1]]-40 ,yarray[rendered_position[i-1]] ,98, 42, flipped[i-1]);
+        }
+        dice = new sprite(document.getElementById(dieface),1100 ,20 ,150, 150, false);
+        fsbutton = new sprite(document.getElementById(fullscreenbutton),1580,25,311,138, false)
+        resetbutton = new sprite(document.getElementById("resetbutton"),960-156, 540-69, 312, 138, false);
+        dark = new sprite(document.getElementById("dark"),0 ,0, 1920, 1080, false); 
+        onlinebtn = new sprite(document.getElementById("onlinebutton"),960-411, 540-69, 312, 138, false);
+        offlinebtn = new sprite(document.getElementById("offlinebutton"),960+100, 540-69, 312, 138, false);
+        leftbtn = new sprite(document.getElementById("leftbutton"),960-562, 540-69, 312, 138, false);
+        confirmbtn = new sprite(document.getElementById("confirmbutton"),960-156, 540-69, 312, 138, false);
+        rightbtn = new sprite(document.getElementById("rightbutton"),960+256, 540-69, 312, 138, false);
+
+      
+    }
+
+    function screenrefresh(){
+      board.update()
+      for( let i = 1; i < 9; i++){
+        //  player[i].x = xarray[rendered_position[i-1]] - 40
+        //  if (i < 5){player[i].y = yarray[rendered_position[i-1]]-30}
+        //  else {player[i].y = yarray[rendered_position[i-1]]}
+          player[i].flip = flipped[i-1]
+          player[i].update();
+      }
+          dice.img = document.getElementById(dieface)
+          dice.update()
+          fsbutton.img = document.getElementById(fullscreenbutton)
+          fsbutton.update()
+
+          if (won) {dark.update()
+          resetbutton.update()
+      }
+      updatecurrent_positiontext()
+      if (!started){
+        dark.update()
+        onlinebtn.update()
+        offlinebtn.update()
+      }
+      if (menu){
+        if (!player_amountselected){
+          dark.update()
+          var canvas = document.getElementById("myCanvas");
+          var ctx = canvas.getContext("2d");
+          ctx.font = "100px blackadder";
+          ctx.textAlign = "center"
+          ctx.fillStyle = "white";
+          ctx.fillText("Human players: ", 980, 300);
+          ctx.fillText(player_amount, 980, 400);
+          
+          leftbtn.update()
+          confirmbtn.update()
+          rightbtn.update()
+        }
+        else if (!bot_amountselected){
+          dark.update()
+          var canvas = document.getElementById("myCanvas");
+          var ctx = canvas.getContext("2d");
+          ctx.font = "100px blackadder";
+          ctx.textAlign = "center"
+          ctx.fillStyle = "white";
+          ctx.fillText("Number of bots: ", 980, 300);
+          ctx.fillText(bot_amount, 980, 400);
+
+          leftbtn.update()
+          confirmbtn.update()
+          rightbtn.update()
+        }
+        else{menu = false}
+
+      }
+    }
+
+    function sprite(img, x, y, width, height, flip) {
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;   
+        this.img = img 
+        this.flip = flip
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.save()
+        if (flip) {
+          ctx.translate(x + width/2, y + width/2);
+          ctx.scale(-1, 1);
+          ctx.translate(-(x + width/2), -(y + width/2));
+        }
+        ctx.drawImage(img, x, y, width, height);
+        ctx.restore()
+
+        this.update = function() {
+          var canvas = document.getElementById("myCanvas");
+          var ctx = canvas.getContext("2d");
+          ctx.save()
+          if (this.flip) {
+            ctx.translate(this.x + this.width/2, this.y + this.width/2);
+            ctx.scale(-1, 1);
+            ctx.translate(-(this.x + this.width/2), -(this.y + this.width/2));
+          }
+          ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+          ctx.restore()
+          }
+    };
+
+    function updatecurrent_positiontext(){
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      ctx.font = "100px blackadder";
+      ctx.textAlign = "center"
+      ctx.fillStyle = "black";
+      ctx.fillText(current_position[0], 1350, 310);
+      ctx.fillText(current_position[1], 1350, 520);
+      ctx.fillText(current_position[2], 1350, 750);
+      ctx.fillText(current_position[3], 1350, 980);
+      ctx.fillText(current_position[4], 1800, 310);
+      ctx.fillText(current_position[5], 1800, 520);
+      ctx.fillText(current_position[6], 1800, 750);
+      ctx.fillText(current_position[7], 1800, 980);
+      if (won){
+        ctx.fillStyle = "white";
+        ctx.fillText(wintext, 960, 400)
+      }
+    }
+
+    function restart(){
+      if (won)
+      {
+        won = false
+        current_position = [1, 1, 1, 1, 1, 1, 1, 1]
+      }
+    }
+
+    function tick(){
+      console.log("tick")
+     if (gamerunning){
+
+      targetx[current_check] = xarray[rendered_position[current_check]] - 40
+      if (current_check < 4){targety[current_check] = yarray[rendered_position[current_check]]-30}
+      else{targety[current_check] = yarray[rendered_position[current_check]]
+}
+
+        distancex[current_check] = Math.abs(player[current_check+1].x - targetx[current_check])
+        distancey[current_check] = Math.abs(player[current_check+1].y - targety[current_check])
+        distratio[current_check] = distancex[current_check] / distancey[current_check]
+
+      // small margin to stop player movement
+      if (distancex[current_check] <= 20 && distancey[current_check] <= 20){   
+        player[current_check+1].x = xarray[rendered_position[current_check]] - 40
+        if (current_check < 4){player[current_check+1].y = yarray[rendered_position[current_check]]-30}
+        else {player[current_check+1].y = yarray[rendered_position[current_check]]}
+        
+        if (rendered_position[current_check] < current_position[current_check]){rendered_position[current_check]++}
+        if (rendered_position[current_check] > current_position[current_check]){rendered_position[current_check]--}
+        }
+        else{
+          if (player[current_check+1].x < targetx[current_check]&& distancex[current_check] > 10){player[current_check+1].x += 25}
+          else if (player[current_check+1].x > targetx[current_check]&& distancex[current_check] > 10){player[current_check+1].x -= 25}
+          if (player[current_check+1].y < targety[current_check] && distancey[current_check] > 10){player[current_check+1].y += 25}
+          else if (player[current_check+1].y > targety[current_check] && distancey[current_check] > 10){player[current_check+1].y -= 25}
+          player[current_check+1].update()
+          console.log(rendered_position)
+          }
+      current_check +=1
+        if (current_check == player_amount + bot_amount){
+            current_check = 0}
+        if (current_player >= player_amount && current_position[current_player-1] == rendered_position[current_player-1]){diceroll()}
+
+        //code to flip sprites on odd rows
+        if (parseInt((rendered_position[current_check]-1)/10)%2 == 1){flipped[current_check] = true}
+        else{flipped[current_check] = false}
+
+        // if you get over 100 you have to back
+        if (current_position[current_check] > 100 && rendered_position[current_check] == 100){
+            current_position[current_check] = 100 - (current_position[current_check]-100)}
+            // snakes
+        else if (current_position[current_check] == 98 && rendered_position[current_check] == 98){current_position[current_check]= 78;rendered_position[current_check]= 78 }
+        else if (current_position[current_check] == 93 && rendered_position[current_check] == 93){current_position[current_check]= 74;rendered_position[current_check]= 74 }
+        else if (current_position[current_check] == 86 && rendered_position[current_check] == 86){current_position[current_check]= 24;rendered_position[current_check]= 24 }
+        else if (current_position[current_check] == 62 && rendered_position[current_check] == 62){current_position[current_check]= 20;rendered_position[current_check]= 20 }
+        else if (current_position[current_check] == 16 && rendered_position[current_check] == 16){current_position[current_check]= 6 ;rendered_position[current_check]= 6 }
+        else if (current_position[current_check] == 49 && rendered_position[current_check] == 49){current_position[current_check]= 12;rendered_position[current_check]= 12 }
+            // ladders
+        else if (current_position[current_check] == 4 && rendered_position[current_check] == 4){current_position[current_check]= 14;rendered_position[current_check]= 14 }
+        else if (current_position[current_check] == 9 && rendered_position[current_check] == 9){current_position[current_check]= 31;rendered_position[current_check]= 31 }
+        else if (current_position[current_check] == 21 && rendered_position[current_check] == 21){current_position[current_check]= 43;rendered_position[current_check]= 43 }
+        else if (current_position[current_check] == 28 && rendered_position[current_check] == 28){current_position[current_check]= 77;rendered_position[current_check]= 77 }
+        else if (current_position[current_check] == 37 && rendered_position[current_check] == 37){current_position[current_check]= 57;rendered_position[current_check]= 57 }
+        else if (current_position[current_check] == 51 && rendered_position[current_check] == 51){current_position[current_check]= 67;rendered_position[current_check]= 67 }
+        else if (current_position[current_check] == 71 && rendered_position[current_check] == 71){current_position[current_check]= 91;rendered_position[current_check]= 91 }
+        
+        // checks if anyone has won, and checks who has won
+        if (current_position[current_check] == 100 && rendered_position[current_check] == 100){
+            won = true;
+            winner = current_check;
+            if (current_check == 0){
+            wintext = "red wins"}
+            else if (current_check == 1){
+            wintext = "blue wins"}
+            else if (current_check == 2){
+            wintext = "green wins"}
+            else if (current_check == 3){
+            wintext = "yellow wins"}
+            else if (current_check == 4){
+            wintext = "purple wins"}
+            else if (current_check == 5){
+            wintext = "orange wins"}
+            else if (current_check == 6){
+            wintext = "white wins"}
+            else if (current_check == 7){
+            wintext = "black wins"}
+        }
+
+        if (won){
+          console.log(wintext)
+        }
+      }
+        screenrefresh()
+        setTimeout(tick, 40/(player_amount + bot_amount))
+     
+    }
+    spriteInit()
+    setTimeout(tick, 30)
+    </script>
+        
+  <!--Footer-->
+  <div class="bottom">
+      <p>Creator: Alexander Hamre</p>
+      <p><a href="contact.html">Contact</a></p>
+    </div>
+</body>
+</html>

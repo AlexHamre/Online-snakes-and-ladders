@@ -1,0 +1,418 @@
+<!DOCTYPE html> <!-- html v5 -->
+<html lang="en"> <!-- språk -->
+<!-- Head har metadataen -->
+<head>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--stock images-->
+    <link rel="icon" type="image/png" href="icon.png"> <!--Dette er iconet-->
+
+    <!--dette linker opp css filene-->
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="Topnav.css">
+
+    <title>AlexHamre</title> <!--Dette er tittelen-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--fonten til spillet-->
+    <style>
+      @font-face {
+          font-family: blackadder;
+          src: url('./assets/itcblkad.ttf');
+          font-weight: 400;
+          font-weight: normal;
+      }  </style>
+
+<script>
+/* gjemmer topnaven på små skjermer */
+  function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }</script>
+    </head>
+<!--Body-->
+<body>
+<!--Dette er i topnav baren-->
+<div class="topnav" id="myTopnav">
+  <a class="flush" href="index.html"><img src="Logo_oppgave.png" width="auto" height="25px"></a>
+  <a href="About.html">About</a>
+  <a href="contact.html">Contact</a> 
+  <a href="Product gallery.html">products</a>
+  <a href="Projects.html">Projects</a>
+  <!--menu button in collapsed mode-->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i></a>
+  </div>
+      <!--Dette er under topnav baren-->
+      
+        <!--Loading images-->
+      <img id="board" src="assets/Artboard 1.png" alt="404 error" width="0" height="0">
+      <img id="dark" src="assets/win screen.png" alt="404 error" width="0" height="0">
+      <img id="player1" src="assets/player1_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player2" src="assets/player2_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player3" src="assets/player3_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player4" src="assets/player4_in_boat.png" alt="404 error" width="0" height="0">
+      <img id="player5" src="assets/player5.png" alt="404 error" width="0" height="0">
+      <img id="player6" src="assets/player6.png" alt="404 error" width="0" height="0">
+      <img id="player7" src="assets/player7.png" alt="404 error" width="0" height="0">
+      <img id="player8" src="assets/player8.png" alt="404 error" width="0" height="0">
+      <img id="dieface1" src="assets/new diefaces/die1.png" alt="404 error" width="0" height="0">
+      <img id="dieface2" src="assets/new diefaces/die2.png" alt="404 error" width="0" height="0">
+      <img id="dieface3" src="assets/new diefaces/die3.png" alt="404 error" width="0" height="0">
+      <img id="dieface4" src="assets/new diefaces/die4.png" alt="404 error" width="0" height="0">
+      <img id="dieface5" src="assets/new diefaces/die5.png" alt="404 error" width="0" height="0">
+      <img id="dieface6" src="assets/new diefaces/die6.png" alt="404 error" width="0" height="0">
+      <img id="fullscreenON" src="assets/player count buttons/fullscreen on button.png" alt="404 error" width="0" height="0">
+      <img id="fullscreenOFF" src="assets/player count buttons/fullscreen off button.png" alt="404 error" width="0" height="0">
+      <img id="resetbutton" src="assets/player count buttons/refresh button.png" alt="404 error" width="0" height="0">
+      <img id="onlinebutton" src="assets/player count buttons/online button.png" alt="404 error" width="0" height="0">
+      <img id="offlinebutton" src="assets/player count buttons/offline button.png" alt="404 error" width="0" height="0">
+      <img id="leftbutton" src="assets/player count buttons/left button.png" alt="404 error" width="0" height="0">
+      <img id="confirmbutton" src="assets/player count buttons/confirm button.png" alt="404 error" width="0" height="0">
+      <img id="rightbutton" src="assets/player count buttons/right button.png" alt="404 error" width="0" height="0">
+
+      <!--Creates a canvas for me to paint sprites onto-->
+      <canvas id="myCanvas" width="1920" height="1080" style="width: 75%;">
+    </canvas>
+    <script>
+
+    // precomputed array of all 100 locations
+    xarray = [3000, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54, 162, 270, 378, 486, 594, 702, 810, 918, 1026, 1026, 918, 810, 702, 594, 486, 378, 270, 162, 54, 54]
+    yarray = [3000, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 1026, 918, 918, 918, 918, 918, 918, 918, 918, 918, 918, 810, 810, 810, 810, 810, 810, 810, 810, 810, 810, 702, 702, 702, 702, 702, 702, 702, 702, 702, 702, 594, 594, 594, 594, 594, 594, 594, 594, 594, 594, 486, 486, 486, 486, 486, 486, 486, 486, 486, 486, 378, 378, 378, 378, 378, 378, 378, 378, 378, 378, 270, 270, 270, 270, 270, 270, 270, 270, 270, 270, 162, 162, 162, 162, 162, 162, 162, 162, 162, 162, 54, 54, 54, 54, 54, 54, 54, 54, 54, 54, -54]
+    // is used to send http requests to a php server script
+    const xhttp = new XMLHttpRequest();
+
+    // function to roll the dice
+    function diceroll(){
+      // It just sends a request to the server
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttp.response.trim())
+        dieface = xhttp.responseText.trim();
+        }
+        };
+        // request can't be async because the dice image won't load. this means the client temporaraly pauses when they roll.
+        xhttp.open("GET", "/server.php?diceroll", false);
+        xhttp.send();
+      screenrefresh(); console.log(currentPositions, rpos, gamerunning);
+  }
+    // all players are part of a list
+    player = []
+    // current position of the players
+    currentPositions = [1, 1, 1, 1, 1, 1, 1, 1]
+    // rendered position of the players
+    rpos = [1, 1, 1, 1, 1, 1, 1, 1]
+    // if player should be flipped
+    flipped = [false, false, false, false, false, false, false, false]
+    //
+    targetx = [0,0,0,0,0,0,0,0]
+    targety = [0,0,0,0,0,0,0,0]
+    distancex = [0,0,0,0,0,0,0,0]
+    distancey = [0,0,0,0,0,0,0,0]
+    distratio = [0,0,0,0,0,0,0,0]
+    // some variable inits
+    ccheck = 0
+    cplayer = 0
+    gamerunning = true
+    dieface = "dieface6"
+    fullscreenbutton = "fullscreenON"
+    isfullscreen = false
+    won = false
+    started = true
+    menu = false
+
+    //click detection stuff
+    function getMousePosition(canvas, event) {
+            let rect = canvas.getBoundingClientRect();
+            let x = event.clientX - rect.left;
+            let y = event.clientY - rect.top;
+            // makes x and y 1920 1080 instead of actual size
+            x = x/rect.width *1920
+            y = y/rect.height * 1080
+            console.log(x, y)
+            // dice button
+            if (x<1250 && x>1100 && y<170 && y>20 && !won && started && !menu){diceroll()}
+            // fullscreen button
+            else if (x<1911 && x>1580 && y<150 && y>25){fullscreenswap(); console.log("fullscreen")}
+            // restart button
+            else if (x>resetbutton.x && x<resetbutton.x+resetbutton.width && y<resetbutton.y + resetbutton.height && y>resetbutton.y && !menu){restart()}
+        }
+      
+        let canvasElem = document.querySelector("canvas");
+
+        canvasElem.addEventListener("mousedown", function(e) {getMousePosition(canvasElem, e);});
+
+  // fullscreen
+  function openFullscreen() {
+    if (myCanvas.requestFullscreen) {
+      myCanvas.requestFullscreen();
+    } else if (myCanvas.webkitRequestFullscreen) { /* Safari */
+      myCanvas.webkitRequestFullscreen();
+    } else if (myCanvas.msRequestFullscreen) { /* IE11 */
+      myCanvas.msRequestFullscreen();
+    }
+  }
+    // close fullscreen
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE11 */
+      document.msExitFullscreen();
+    }
+    console.log("closed fullscreen");
+  }
+
+    function fullscreenswap(){
+      if (isfullscreen){fullscreenbutton = "fullscreenON"; closeFullscreen(); isfullscreen = false}
+      else {fullscreenbutton = "fullscreenOFF"; openFullscreen(); isfullscreen = true}
+      screenrefresh()
+    }
+
+    // intializes the sprites
+    function spriteInit(){
+      resetbutton = new sprite(document.getElementById("resetbutton"),960-156, 540-69, 312, 138, false);
+      board = new sprite(document.getElementById("board"),0 ,0, 1920, 1080, false);
+        for( let i = 1; i < 5; i++){
+          player[i] = new sprite(document.getElementById("player"+ i),xarray[rpos[i-1]]-40 ,yarray[rpos[i-1]]-30 ,98, 42, flipped[i-1]);
+        }
+      for( let i = 5; i < 9; i++){
+          player[i] = new sprite(document.getElementById("player"+ i),xarray[rpos[i-1]]-40 ,yarray[rpos[i-1]] ,98, 42, flipped[i-1]);
+        }
+        dice = new sprite(document.getElementById(dieface),1100 ,20 ,150, 150, false);
+        fsbutton = new sprite(document.getElementById(fullscreenbutton),1580,25,311,138, false)
+        dark = new sprite(document.getElementById("dark"),0 ,0, 1920, 1080, false);  
+    }
+
+    // updates everything on the screen
+    function screenrefresh(){
+      board.update()
+      // updates the players
+      for( let i = 1; i < 9; i++){
+          player[i].flip = flipped[i-1]
+          player[i].update();
+      }
+      // updates the dice and fullscreen buttons
+          dice.img = document.getElementById(dieface)
+          fsbutton.img = document.getElementById(fullscreenbutton)
+          dice.update()
+          fsbutton.update()
+          // if the game is over tint the screen
+          if (won) {dark.update()
+          resetbutton.update()
+      }
+      updatecurrentPositionstext()
+      if (!started){
+        dark.update()
+        onlinebtn.update()
+        offlinebtn.update()
+      }
+    }
+  
+    function sprite(img, x, y, width, height, flip) {
+        this.width = width;
+        this.height = height;
+        this.x = x;
+        this.y = y;   
+        this.img = img 
+        this.flip = flip
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.save()
+        if (flip) {
+          ctx.translate(x + width/2, y + width/2);
+          ctx.scale(-1, 1);
+          ctx.translate(-(x + width/2), -(y + width/2));
+        }
+        ctx.drawImage(img, x, y, width, height);
+        ctx.restore()
+
+        this.update = function() {
+          var canvas = document.getElementById("myCanvas");
+          var ctx = canvas.getContext("2d");
+          ctx.save()
+          if (this.flip) {
+            ctx.translate(this.x + this.width/2, this.y + this.width/2);
+            ctx.scale(-1, 1);
+            ctx.translate(-(this.x + this.width/2), -(this.y + this.width/2));
+          }
+          ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+          ctx.restore()
+          }
+    };
+
+    function updatecurrentPositionstext(){
+      var canvas = document.getElementById("myCanvas");
+      var ctx = canvas.getContext("2d");
+      ctx.font = "100px blackadder";
+      ctx.textAlign = "center"
+      ctx.fillStyle = "black";
+      ctx.fillText(currentPositions[0], 1350, 310);
+      ctx.fillText(currentPositions[1], 1350, 520);
+      ctx.fillText(currentPositions[2], 1350, 750);
+      ctx.fillText(currentPositions[3], 1350, 980);
+      ctx.fillText(currentPositions[4], 1800, 310);
+      ctx.fillText(currentPositions[5], 1800, 520);
+      ctx.fillText(currentPositions[6], 1800, 750);
+      ctx.fillText(currentPositions[7], 1800, 980);
+      if (won){
+        ctx.fillStyle = "white";
+        ctx.fillText(wintext, 960, 400)
+      }
+    }
+
+    function restart(){
+      if (won)
+      {
+        won = false
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {}
+        };
+        xhttp.open("GET", "/server.php?reset", true);
+        xhttp.send();
+      }
+    }
+
+    function askforcurrentPositions(){
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        // Typical action to be performed when the document is ready:
+        currentPositions = JSON.parse(xhttp.response);
+        console.log("currentPositions: " + currentPositions)
+        }
+        };
+        xhttp.open("GET", "/server.php?currentPositions", true);
+        xhttp.send();
+        setTimeout(askforcurrentPositions, 100)
+    }
+
+    function tick(){
+    //console.log("tick")
+    if (gamerunning){
+
+      ccheck ++
+        if (ccheck == 8){
+            ccheck = 0}
+
+        //code to flip sprites on odd rows
+        if (parseInt((rpos[ccheck]-1)/10)%2 == 1){flipped[ccheck] = true}
+        else{flipped[ccheck] = false}
+
+        // snakes
+        if (currentPositions[ccheck] == 78 && rpos[ccheck] == 98){rpos[ccheck]= 78}
+        else if (currentPositions[ccheck] == 74 && rpos[ccheck] == 93){rpos[ccheck]= 74}
+        else if (currentPositions[ccheck] == 24 && rpos[ccheck] == 86){rpos[ccheck]= 24}
+        else if (currentPositions[ccheck] == 20 && rpos[ccheck] == 62){rpos[ccheck]= 20}
+        else if (currentPositions[ccheck] == 6  && rpos[ccheck] == 16){rpos[ccheck]= 6} 
+        else if (currentPositions[ccheck] == 12 && rpos[ccheck] == 49){rpos[ccheck]= 12}
+
+        // ladders
+        if (currentPositions[ccheck] == 14 && rpos[ccheck] == 4){rpos[ccheck]= 14 }
+        else if (currentPositions[ccheck] == 31 && rpos[ccheck] == 9){rpos[ccheck]= 31 }
+        else if (currentPositions[ccheck] == 43 && rpos[ccheck] == 21){rpos[ccheck]= 43 }
+        else if (currentPositions[ccheck] == 77 && rpos[ccheck] == 28){rpos[ccheck]= 77 }
+        else if (currentPositions[ccheck] == 57 && rpos[ccheck] == 37){rpos[ccheck]= 57 }
+        else if (currentPositions[ccheck] == 67 && rpos[ccheck] == 51){rpos[ccheck]= 67 }
+        else if (currentPositions[ccheck] == 91 && rpos[ccheck] == 71){rpos[ccheck]= 91 }
+        
+
+      targetx[ccheck] = xarray[rpos[ccheck]] - 40
+      if (ccheck < 4){targety[ccheck] = yarray[rpos[ccheck]]-30}
+      else{targety[ccheck] = yarray[rpos[ccheck]]
+}
+
+        distancex[ccheck] = Math.abs(player[ccheck+1].x - targetx[ccheck])
+        distancey[ccheck] = Math.abs(player[ccheck+1].y - targety[ccheck])
+        distratio[ccheck] = distancex[ccheck] / distancey[ccheck]
+
+      // small margin to stop player movement
+        if (distancex[ccheck] <= 20 && distancey[ccheck] <= 20){   
+
+            player[ccheck+1].x = xarray[rpos[ccheck]] - 40
+            if (ccheck < 4){player[ccheck+1].y = yarray[rpos[ccheck]]-30}
+            else {player[ccheck+1].y = yarray[rpos[ccheck]]}
+
+        // snake related movement
+        if (currentPositions[ccheck] == 78 && rpos[ccheck] <= 98 && rpos[ccheck] != currentPositions[ccheck]){rpos[ccheck]++}
+        else if (currentPositions[ccheck] == 74 && rpos[ccheck] <= 93 && rpos[ccheck] != currentPositions[ccheck]){rpos[ccheck]++}
+        else if (currentPositions[ccheck] == 24 && rpos[ccheck] <= 86 && rpos[ccheck] != currentPositions[ccheck]){rpos[ccheck]++}
+        else if (currentPositions[ccheck] == 20 && rpos[ccheck] <= 62 && rpos[ccheck] != currentPositions[ccheck]){rpos[ccheck]++}
+        else if (currentPositions[ccheck] == 6  && rpos[ccheck] <= 16 && rpos[ccheck] != currentPositions[ccheck]){rpos[ccheck]++}
+        else if (currentPositions[ccheck] == 12 && rpos[ccheck] <= 49 && rpos[ccheck] != currentPositions[ccheck]){rpos[ccheck]++}
+
+        // normal movement
+        else if (rpos[ccheck] < currentPositions[ccheck]){rpos[ccheck]++}
+        else if (rpos[ccheck] > currentPositions[ccheck]){rpos[ccheck]--}
+        }
+        else{
+        if (player[ccheck+1].x < targetx[ccheck]&& distancex[ccheck] > 10){player[ccheck+1].x += 25}
+        else if (player[ccheck+1].x > targetx[ccheck]&& distancex[ccheck] > 10){player[ccheck+1].x -= 25}
+        if (player[ccheck+1].y < targety[ccheck] && distancey[ccheck] > 10){player[ccheck+1].y += 25}
+        else if (player[ccheck+1].y > targety[ccheck] && distancey[ccheck] > 10){player[ccheck+1].y -= 25}
+        player[ccheck+1].update()
+        console.log(rpos)
+        }
+
+
+        // checks if anyone has won, and checks who has won
+        if (currentPositions[ccheck] == 100 && rpos[ccheck] == 100){
+            won = true;
+            winner = ccheck;
+            if (ccheck == 0){
+            wintext = "red wins"}
+            else if (ccheck == 1){
+            wintext = "blue wins"}
+            else if (ccheck == 2){
+            wintext = "green wins"}
+            else if (ccheck == 3){
+            wintext = "yellow wins"}
+            else if (ccheck == 4){
+            wintext = "purple wins"}
+            else if (ccheck == 5){
+            wintext = "orange wins"}
+            else if (ccheck == 6){
+            wintext = "white wins"}
+            else if (ccheck == 7){
+            wintext = "black wins"}
+        }
+
+        if (won){
+          console.log(wintext)
+        }
+      }
+        screenrefresh()
+        setTimeout(tick, 5)
+     
+    }
+
+    // this sets the players at correct position if game has already started
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        // Typical action to be performed when the document is ready:
+        currentPositions = JSON.parse(xhttp.response);
+        console.log("currentPositions: " + currentPositions)
+        }
+        };
+        xhttp.open("GET", "/server.php?currentPositions", false);
+        xhttp.send();
+    rpos = currentPositions
+
+    // initialyzes the sprites and starts the loops
+    spriteInit()
+    setTimeout(tick,20)
+    askforcurrentPositions()
+    </script>
+        
+  <!--Footer-->
+  <div class="bottom">
+      <p>Creator: Alexander Hamre</p>
+      <p><a href="contact.html">Contact</a></p>
+    </div>
+</body>
+</html>

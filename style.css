@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap'); /* Font*/
+
+/* Text color Class*/
+  .text{
+    color: rgb(0, 0, 0); /*Fargen til teksten*/
+    margin-left: 2%; /*margin fra venstre siden*/
+    font-family: 'Mochiy Pop P One', sans-serif; /*Fonten*/
+  }
+/* Footer class*/
+  .bottom {
+    /*Setter footeren i bunnen av skjermen hele tiden*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    /*får teksten til å se riktig ut*/
+    color: rgb(0, 0, 0);
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size: 10px;
+  }
+
+/* Background and margin*/
+  body {
+    margin: 0px;
+    background-color: rgb(255, 255, 255);
+  }
+ 
+
+  /* Flexbox */
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap; /*får boksene til a gå nedover når det er lite horisontal plass*/
+    background-color: rgba(228, 228, 228, 0); /*usynlig*/
+  }
+  /*Teksten over boksen*/
+  .flex-container > div {
+    background-color: #ffffff00;/*usynlig*/
+    width: 40%;
+    margin: 2%;
+    text-align: start;
+    line-height: 5px;
+    font-size: 30px;
+  } 
