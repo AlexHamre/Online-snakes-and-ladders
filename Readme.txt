@@ -10,8 +10,13 @@ just put the files in /var/www/html
 mysql:
 CREATE DATABASE stigepill;
 
+use stigepill;
+
 CREATE TABLE test (
     id int,
-    currentPlayers varchar(50),
+    currentPositions varchar(50),
     currentPlayer int,
 );
+
+INSERT INTO test (id, currentPositions, currentPlayer)
+VALUES (1, '1,1,1,1,1,1,1,1', 1);
